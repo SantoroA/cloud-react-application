@@ -7,3 +7,6 @@
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
   width: 70%;
 }
+.Weather #temp-element {
+  font-size: 4em;
+}
