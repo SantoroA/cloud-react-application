@@ -58,116 +58,124 @@ export default function Weather(props) {
   }
 
   return (
-    <div className="Weather container">
-      <div className="default-cities row">
-        <div className="col-3 text-center">
-          <a href="/" className="city-link" onClick={handleClick}>
-            London
-          </a>
+    <div className="Weather">
+      <div className="main container">
+        <div className="default-cities row">
+          <div className="col-3 text-center">
+            <a href="/" className="city-link" onClick={handleClick}>
+              London
+            </a>
+          </div>
+          <div className="col-3 text-center">
+            <a href="/" className="city-link" onClick={handleClick}>
+              Paris
+            </a>
+          </div>
+          <div className="col-3 text-center">
+            <a href="/" className="city-link" onClick={handleClick}>
+              Rome
+            </a>
+          </div>
+          <div className="col-3 text-center">
+            <a href="/" className="city-link" onClick={handleClick}>
+              New York
+            </a>
+          </div>
         </div>
-        <div className="col-3 text-center">
-          <a href="/" className="city-link" onClick={handleClick}>
-            Paris
-          </a>
-        </div>
-        <div className="col-3 text-center">
-          <a href="/" className="city-link" onClick={handleClick}>
-            Rome
-          </a>
-        </div>
-        <div className="col-3 text-center">
-          <a href="/" className="city-link" onClick={handleClick}>
-            New York
-          </a>
-        </div>
-      </div>
-      <div className="searchForm row align-items-center justify-content-center mt-4">
-        <div className="col-2">
-          <button
-            className="btn btn-dark m-auto shadow-sm"
-            id="button-current-city"
-          >
-            <i className="fas fa-map-marker-alt"></i>
-          </button>
-        </div>
-        <div className="col-10">
-          <form onSubmit={handleSubmit}>
-            <div className="row">
-              <div className="col-9  pl-4">
-                <input
-                  className="form-control"
-                  type="search"
-                  placeholder="Enter a City"
-                  onChange={updateCity}
-                />
+        <div className="searchForm row align-items-center justify-content-center mt-4">
+          <div className="col-2">
+            <button
+              className="btn btn-dark m-auto shadow-sm"
+              id="button-current-city"
+            >
+              <i className="fas fa-map-marker-alt"></i>
+            </button>
+          </div>
+          <div className="col-10">
+            <form onSubmit={handleSubmit}>
+              <div className="row">
+                <div className="col-9  pl-4">
+                  <input
+                    className="form-control"
+                    type="search"
+                    placeholder="Enter a City"
+                    onChange={updateCity}
+                  />
+                </div>
+                <div className="col-3">
+                  <button
+                    type="submit"
+                    className="btn btn-dark d-block m-auto shadow-sm"
+                    id="button-search-city"
+                  >
+                    <i className="fas fa-search"></i>
+                  </button>
+                </div>
               </div>
-              <div className="col-3">
-                <button
-                  type="submit"
-                  className="btn btn-dark d-block m-auto shadow-sm"
-                  id="button-search-city"
-                >
-                  <i className="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
 
-      {celsiusTemp ? (
-        <div>
+        {celsiusTemp ? (
           <div>
-            <h1>{cityDisplay}</h1>
-            <div className="row justify-content-center align-items-center">
-              <div className="col-6">
-                <img
-                  className="weather-app-icon"
-                  src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-                  alt={description}
-                />
-              </div>
-              <div className="col-6">
-                <div className="row">
-                  <div className="col align-items-right pr-0" id="temp-element">
-                    {isFahrenheit ? fahrenheitTemp : celsiusTemp}
-                  </div>
-                  <div className="col align-items-left pl-0">
-                    °
-                    <a href="/" onClick={changeToCelsius}>
-                      C
-                    </a>
-                    | °
-                    <a href="/" onClick={changeToFahrenheit}>
-                      F
-                    </a>
+            <div>
+              <h1>{cityDisplay}</h1>
+              <div className="row justify-content-center align-items-center">
+                <div className="col-6">
+                  <img
+                    className="weather-app-icon"
+                    src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+                    alt={description}
+                  />
+                </div>
+                <div className="col-6">
+                  <div className="row">
+                    <div
+                      className="col align-items-right pr-0"
+                      id="temp-element"
+                    >
+                      {isFahrenheit ? fahrenheitTemp : celsiusTemp}
+                    </div>
+                    <div className="col align-items-left pl-0">
+                      °
+                      <a href="/" onClick={changeToCelsius}>
+                        C
+                      </a>
+                      | °
+                      <a href="/" onClick={changeToFahrenheit}>
+                        F
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div className="row secondary-info justify-content-center align-items-center">
+              <div className="col-md-3 mb-2 mb-md-0 ">
+                {weekDay} {time}
+              </div>
+              <div className="col-md-3 mb-2 mb-md-0 description">
+                {description}
+              </div>
+              <div className="col-md-3 mb-2 mb-md-0  ">
+                Wind Speed: {windSpeed}m/s
+              </div>
+              <div className="col-md-3 mb-2 mb-md-0 ">
+                Humidity: {humidity}%
+              </div>
+            </div>
           </div>
-          <div className="row secondary-info justify-content-center align-items-center">
-            <div className="col-md-3 mb-2 mb-md-0 ">
-              {weekDay} {time}
-            </div>
-            <div className="col-md-3 mb-2 mb-md-0 description">
-              {description}
-            </div>
-            <div className="col-md-3 mb-2 mb-md-0  ">
-              Wind Speed: {windSpeed}m/s
-            </div>
-            <div className="col-md-3 mb-2 mb-md-0 ">Humidity: {humidity}%</div>
-          </div>
-        </div>
-      ) : (
-        <Loader
-          type="Hearts"
-          color="#584153"
-          height={100}
-          width={100}
-          //   timeout={3000}
-        />
-      )}
+        ) : (
+          <Loader
+            type="Hearts"
+            color="#584153"
+            height={100}
+            width={100}
+            //   timeout={3000}
+          />
+        )}
+      </div>
+      <div className="Forecast container"></div>
     </div>
   );
 }
