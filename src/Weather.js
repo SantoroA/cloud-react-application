@@ -93,7 +93,7 @@ export default function Weather(props) {
         <div className="col-10">
           <form onSubmit={handleSubmit}>
             <div className="row">
-              <div className="col-9">
+              <div className="col-9  pl-4">
                 <input
                   className="form-control"
                   type="search"
@@ -120,22 +120,19 @@ export default function Weather(props) {
           <div>
             <h1>{cityDisplay}</h1>
             <div className="row justify-content-center align-items-center">
-              <div className="col-4">
+              <div className="col-6">
                 <img
                   className="weather-app-icon"
                   src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
                   alt={description}
                 />
               </div>
-              <div className="col-4">
+              <div className="col-6">
                 <div className="row">
-                  <div
-                    className="col-6 align-items-right pr-0"
-                    id="temp-element"
-                  >
+                  <div className="col align-items-right pr-0" id="temp-element">
                     {isFahrenheit ? fahrenheitTemp : celsiusTemp}
                   </div>
-                  <div className="col-6 align-items-left pl-0">
+                  <div className="col align-items-left pl-0">
                     °
                     <a href="/" onClick={changeToCelsius}>
                       C
@@ -150,19 +147,16 @@ export default function Weather(props) {
             </div>
           </div>
           <div className="row secondary-info justify-content-center align-items-center">
-            <div className="col-3 divider">
-              {weekDay} <br />
-              {time}
+            <div className="col-md-3 mb-2 mb-md-0 ">
+              {weekDay} {time}
             </div>
-            <div className="col-3 ">{description}</div>
-            <div className="col-3 ">
-              Wind Speed <br />
-              {windSpeed}m/s
+            <div className="col-md-3 mb-2 mb-md-0 description">
+              {description}
             </div>
-            <div className="col-3 ">
-              Humidity <br />
-              {humidity}%
+            <div className="col-md-3 mb-2 mb-md-0  ">
+              Wind Speed: {windSpeed}m/s
             </div>
+            <div className="col-md-3 mb-2 mb-md-0 ">Humidity: {humidity}%</div>
           </div>
         </div>
       ) : (
