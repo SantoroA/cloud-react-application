@@ -5,8 +5,17 @@ import { formatTime, formatWeekDay } from "./helpers";
 import Loader from "react-loader-spinner";
 
 export default function Weather(props) {
-  const [city, setCity] = useState("");
-  const [info, setInfo] = useState(null);
+  const [city, setCity] = useState("London");
+  const [cityDisplay, setCityDisplay] = useState(null);
+  const [celsiusTemp, setCelsiusTemp] = useState(null);
+  const [fahrenheitTemp, setFahrenheitTemp] = useState(null);
+  const [windSpeed, setWindSpeed] = useState(null);
+  const [humidity, setHumidity] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [icon, setIcon] = useState(null);
+  const [weekDay, setWeekDay] = useState(null);
+  const [time, setTime] = useState(null);
+
   const [isFahrenheit, setIsFahrenheit] = useState(false);
   function updateCity(event) {
     setCity(event.target.value);
@@ -37,62 +46,20 @@ export default function Weather(props) {
     setIsFahrenheit(true);
   }
   function handleResponse(response) {
-    setInfo(
-      <div>
-        <div>
-          <h1>
-            {response.data.name}, {response.data.sys.country}
-          </h1>
-          <div className="row justify-content-center align-items-center">
-            <div className="col-6">
-              <img
-                src={`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`}
-                alt={response.data.weather[0].description}
-              />
-            </div>
-            <div className="col-6">
-              <div className="row">
-                <div className="col-6" id="temp-element">
-                  {isFahrenheit
-                    ? Math.round((response.data.main.temp * 9) / 5 + 32)
-                    : Math.round(response.data.main.temp)}
-                </div>
-                <div className="col-6">
-                  °
-                  <a href="/" onClick={changeToCelsius}>
-                    C
-                  </a>
-                  | °
-                  <a href="/" onClick={changeToFahrenheit}>
-                    F
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row secondary-info justify-content-center align-items-center">
-          <div className="col-3 divider">
-            {formatWeekDay(response.data.dt * 1000)} <br />
-            {formatTime(response.data.dt * 1000)}
-          </div>
-          <div className="col-3 ">{response.data.weather[0].description}</div>
-          <div className="col-3 ">
-            Wind Speed <br />
-            {response.data.wind.speed}m/s
-          </div>
-          <div className="col-3 ">
-            Humidity <br />
-            {response.data.main.humidity}%
-          </div>
-        </div>
-      </div>
-    );
+    setCelsiusTemp(Math.round(response.data.main.temp));
+    setFahrenheitTemp(Math.round((response.data.main.temp * 9) / 5 + 32));
+    setHumidity(response.data.main.humidity);
+    setWindSpeed(response.data.wind.speed);
+    setDescription(response.data.weather[0].description);
+    setIcon(response.data.weather[0].icon);
+    setTime(formatTime(response.data.dt * 1000));
+    setWeekDay(formatWeekDay(response.data.dt * 1000));
+    setCityDisplay(`${response.data.name}, ${response.data.sys.country}`);
   }
 
   return (
     <div className="Weather container">
-      <div className="defaultCities row">
+      <div className="default-cities row">
         <div className="col-3 text-center">
           <a href="/" className="city-link" onClick={handleClick}>
             London
@@ -116,7 +83,10 @@ export default function Weather(props) {
       </div>
       <div className="searchForm row align-items-center justify-content-center mt-4">
         <div className="col-2">
-          <button className="btn btn-dark m-auto shadow-sm">
+          <button
+            className="btn btn-dark m-auto shadow-sm"
+            id="button-current-city"
+          >
             <i className="fas fa-map-marker-alt"></i>
           </button>
         </div>
@@ -135,6 +105,7 @@ export default function Weather(props) {
                 <button
                   type="submit"
                   className="btn btn-dark d-block m-auto shadow-sm"
+                  id="button-search-city"
                 >
                   <i className="fas fa-search"></i>
                 </button>
@@ -143,14 +114,66 @@ export default function Weather(props) {
           </form>
         </div>
       </div>
-      <Loader
-        type="Puff"
-        color="#584153"
-        height={100}
-        width={100}
-        timeout={3000} //3 secs
-      />
-      {info}
+
+      {celsiusTemp ? (
+        <div>
+          <div>
+            <h1>{cityDisplay}</h1>
+            <div className="row justify-content-center align-items-center">
+              <div className="col-4">
+                <img
+                  className="weather-app-icon"
+                  src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+                  alt={description}
+                />
+              </div>
+              <div className="col-4">
+                <div className="row">
+                  <div
+                    className="col-6 align-items-right pr-0"
+                    id="temp-element"
+                  >
+                    {isFahrenheit ? fahrenheitTemp : celsiusTemp}
+                  </div>
+                  <div className="col-6 align-items-left pl-0">
+                    °
+                    <a href="/" onClick={changeToCelsius}>
+                      C
+                    </a>
+                    | °
+                    <a href="/" onClick={changeToFahrenheit}>
+                      F
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row secondary-info justify-content-center align-items-center">
+            <div className="col-3 divider">
+              {weekDay} <br />
+              {time}
+            </div>
+            <div className="col-3 ">{description}</div>
+            <div className="col-3 ">
+              Wind Speed <br />
+              {windSpeed}m/s
+            </div>
+            <div className="col-3 ">
+              Humidity <br />
+              {humidity}%
+            </div>
+          </div>
+        </div>
+      ) : (
+        <Loader
+          type="Hearts"
+          color="#584153"
+          height={100}
+          width={100}
+          //   timeout={3000}
+        />
+      )}
     </div>
   );
 }
