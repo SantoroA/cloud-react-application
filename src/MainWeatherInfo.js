@@ -54,6 +54,7 @@ export default function MainWeatherInfo(props) {
           <button
             className="btn btn-dark m-auto shadow-sm"
             id="button-current-city"
+            onClick={props.getPosition}
           >
             <i className="fas fa-map-marker-alt"></i>
           </button>
@@ -133,13 +134,16 @@ export default function MainWeatherInfo(props) {
           </div>
         </div>
       ) : (
-        <Loader
-          type="Hearts"
-          color="#584153"
-          height={100}
-          width={100}
-          //   timeout={3000}
-        />
+        <>
+          <h1>Please insert a city</h1>
+          <Loader
+            type="Hearts"
+            color="#584153"
+            height={100}
+            width={100}
+            //   timeout={3000}
+          />
+        </>
       )}
     </div>
   );

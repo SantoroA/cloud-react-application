@@ -44,6 +44,24 @@ export default function Weather(props) {
       .get(`${forecastApiUrl}q=${e.target.name}&appid=${apiKey}&units=metric`)
       .then(handleForecastResponse);
   }
+  function handlePosition(position) {
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    let apiKey = "2b3715c71ce846298a7fbee953bac1d5";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?`;
+    let forecastApiUrl = "https://api.openweathermap.org/data/2.5/forecast?";
+    axios
+      .get(`${apiUrl}lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+      .then(handleResponse);
+    axios
+      .get(
+        `${forecastApiUrl}lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+      )
+      .then(handleForecastResponse);
+  }
+  function getPosition() {
+    navigator.geolocation.getCurrentPosition(handlePosition);
+  }
   function changeToCelsius(e) {
     e.preventDefault();
     setIsFahrenheit(false);
@@ -57,12 +75,12 @@ export default function Weather(props) {
   }
   function handleForecastResponse(response) {
     setForecastInfo(response.data);
-    console.log(response.data);
   }
 
   return (
     <div className="Weather">
       <MainWeatherInfo
+        getPosition={getPosition}
         weatherInfo={weatherInfo}
         updateCity={updateCity}
         handleSubmit={handleSubmit}
