@@ -2,11 +2,13 @@ import React from "react";
 import { formatTime, formatWeekDay } from "./helpers";
 import Loader from "react-loader-spinner";
 import ReactAnimatedWeather from "react-animated-weather";
+import "./MainWeatherInfo.css";
+import WeatherCodes from "./WeatherCodes";
 
 export default function MainWeatherInfo(props) {
   let weather = props.weatherInfo;
   return (
-    <div className="main container">
+    <div className="MainWeatherInfo container">
       <div className="default-cities row">
         <div className="col-3 text-center">
           <a
@@ -91,9 +93,9 @@ export default function MainWeatherInfo(props) {
             <div className="row my-4 justify-content-center align-items-center">
               <div className="col-6 pr-0">
                 <ReactAnimatedWeather
-                  icon={"CLEAR_DAY"}
+                  icon={WeatherCodes[weather.weather[0].icon]}
                   color={"#584153"}
-                  size={"70%"}
+                  size={100}
                   animate={true}
                 />
               </div>
@@ -105,37 +107,52 @@ export default function MainWeatherInfo(props) {
                       : `${Math.round(weather.main.temp)}`}
                   </div>
                   <div className="col align-items-left pl-0">
-                    °
-                    <a href="/" onClick={props.changeToCelsius}>
-                      C
+                    <a
+                      href="/"
+                      className={
+                        props.isFahrenheit
+                          ? "unactiveLink pr-1"
+                          : "activeLink pr-1"
+                      }
+                      onClick={props.changeToCelsius}
+                    >
+                      °C
                     </a>
-                    | °
-                    <a href="/" onClick={props.changeToFahrenheit}>
-                      F
+                    |
+                    <a
+                      href="/"
+                      className={
+                        props.isFahrenheit
+                          ? "activeLink pl-1"
+                          : "unactiveLink pl-1"
+                      }
+                      onClick={props.changeToFahrenheit}
+                    >
+                      °F
                     </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="row secondary-info justify-content-center align-items-center">
-            <div className="col-md-3 mb-2 mb-md-0 ">
+          <div className="row secondary-info justify-content-around align-items-center">
+            <div className="info-box mx-4 mx-md-1 col-md-2 mb-2 mb-md-0 shadow-sm">
               {formatWeekDay(weather.dt * 1000)} {formatTime(weather.dt * 1000)}
             </div>
-            <div className="col-md-3 mb-2 mb-md-0 description">
+            <div className="info-box mx-4 mx-md-1 col-md-2 mb-2 mb-md-0 shadow-sm description">
               {weather.weather[0].description}
             </div>
-            <div className="col-md-3 mb-2 mb-md-0  ">
+            <div className="info-box mx-4 mx-md-1 col-md-2 mb-2 mb-md-0 shadow-sm ">
               Wind Speed: {weather.wind.speed}m/s
             </div>
-            <div className="col-md-3 mb-2 mb-md-0 ">
+            <div className="info-box mx-4 mx-md-1  col-md-2 mb-2 mb-md-0 shadow-sm">
               Humidity: {weather.main.humidity}%
             </div>
           </div>
         </div>
       ) : (
         <>
-          <h1>Please insert a city</h1>
+          <h2>Please insert a city</h2>
           <Loader
             type="Hearts"
             color="#584153"
