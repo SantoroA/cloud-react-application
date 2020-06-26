@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <Weather />
-      <p class="text-center small">
+      <p className="text-center small">
         This website was coded by Aline Santoro and is open-sourced on
         <a href="https://github.com/SantoroA/cloud-react-application">
           GitHub
