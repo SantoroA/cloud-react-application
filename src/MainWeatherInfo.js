@@ -135,17 +135,17 @@ export default function MainWeatherInfo(props) {
               </div>
             </div>
           </div>
-          <div className="row secondary-info justify-content-around align-items-center">
-            <div className="info-box mx-4 mx-md-1 col-md-2 mb-2 mb-md-0 shadow-sm">
+          <div className="row secondary-info justify-content-around">
+            <div className="info-box align-items-center mx-4 mx-md-1 col-md mb-2 mb-md-0 shadow-sm">
               {formatWeekDay(weather.dt * 1000)} {formatTime(weather.dt * 1000)}
             </div>
-            <div className="info-box mx-4 mx-md-1 col-md-2 mb-2 mb-md-0 shadow-sm description">
+            <div className="info-box align-items-center mx-4 mx-md-1 col-md mb-2 mb-md-0 shadow-sm description">
               {weather.weather[0].description}
             </div>
-            <div className="info-box mx-4 mx-md-1 col-md-2 mb-2 mb-md-0 shadow-sm ">
+            <div className="info-box mx-4 align-items-center mx-md-1 col-md mb-2 mb-md-0 shadow-sm ">
               Wind Speed: {weather.wind.speed}m/s
             </div>
-            <div className="info-box mx-4 mx-md-1  col-md-2 mb-2 mb-md-0 shadow-sm">
+            <div className="info-box mx-4 align-items-center mx-md-1  col-md mb-2 mb-md-0 shadow-sm">
               Humidity: {weather.main.humidity}%
             </div>
           </div>

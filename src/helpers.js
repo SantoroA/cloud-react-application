@@ -25,5 +25,11 @@ function formatWeekDay(timestamp) {
   let weekDay = days[date.getDay()];
   return weekDay;
 }
+function formaForecastWeekDay(timestamp) {
+  let date = new Date(timestamp);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let weekDay = days[date.getDay()];
+  return weekDay;
+}
 
-export { formatTime, formatWeekDay };
+export { formatTime, formatWeekDay, formaForecastWeekDay };

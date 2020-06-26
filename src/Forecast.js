@@ -1,6 +1,6 @@
 import React from "react";
 import WeatherCodes from "./WeatherCodes";
-import { formatWeekDay } from "./helpers";
+import { formaForecastWeekDay } from "./helpers";
 import Loader from "react-loader-spinner";
 import ReactAnimatedWeather from "react-animated-weather";
 import "./Forecast.css";
@@ -14,7 +14,9 @@ export default function Forecast(props) {
           {forecast.map((day, i) => (
             <div key={i} className="col-6 col-sm-4 col-md-2 mb-4 mb-md-0 px-2">
               <div className="info-box shadow-sm ">
-                <p>{formatWeekDay(day.dt * 1000)}</p>
+                <p className="forecastWeekDay">
+                  {formaForecastWeekDay(day.dt * 1000)}
+                </p>
                 <ReactAnimatedWeather
                   icon={WeatherCodes[day.weather[0].icon]}
                   color={"#584153"}
