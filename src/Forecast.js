@@ -4,14 +4,14 @@ import Loader from "react-loader-spinner";
 import ReactAnimatedWeather from "react-animated-weather";
 
 export default function Forecast(props) {
-  let forecast = props.forecastInfo.list;
+  let forecast = props.forecastInfo;
 
   return (
     <div className="forecast container">
       {props.forecastInfo ? (
         <div className="row justify-content-around">
-          {forecast.map((day) => (
-            <div className="col-4 col-md-2 mb-4 mb-md-0">
+          {forecast.map((day, i) => (
+            <div key={i} className="col-4 col-md-2 mb-4 mb-md-0">
               <p>{formatWeekDay(day.dt * 1000)}</p>
               <ReactAnimatedWeather
                 icon={"CLEAR_DAY"}

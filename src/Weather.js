@@ -74,7 +74,9 @@ export default function Weather(props) {
     setWeatherInfo(response.data);
   }
   function handleForecastResponse(response) {
-    setForecastInfo(response.data);
+    const everyNth = (arr, nth) => arr.filter((e, i) => i % nth === nth - 1);
+    const newForecast = everyNth(response.data.list, 8);
+    setForecastInfo(newForecast);
   }
 
   return (
