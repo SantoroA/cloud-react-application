@@ -72,7 +72,7 @@ export default function MainWeatherInfo(props) {
                   onChange={props.updateCity}
                 />
               </div>
-              <div className="col-3">
+              <div className="col-3 pl-0">
                 <button
                   type="submit"
                   className="btn btn-dark d-block m-auto shadow-sm"
