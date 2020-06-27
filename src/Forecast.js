@@ -12,7 +12,7 @@ export default function Forecast(props) {
       {props.forecastInfo ? (
         <div className="row justify-content-around">
           {forecast.map((day, i) => (
-            <div key={i} className="col-6 col-sm-4 col-md-2 mb-4 mb-md-0 px-2">
+            <div key={i} className="col-sm mx-5 mx-sm-0 mb-4 mb-md-0 px-1">
               <div className="info-box shadow-sm ">
                 <p className="forecastWeekDay">
                   {formaForecastWeekDay(day.dt * 1000)}

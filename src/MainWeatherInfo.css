@@ -30,7 +30,7 @@
 
 .MainWeatherInfo #temp-element {
   line-height: 1;
-  font-size: 3.2em;
+  font-size: 3em;
   font-weight: 700;
   text-align: right;
 }
@@ -55,7 +55,6 @@
   color: #f4f4f4;
   font-size: 1.2em;
   transition: all 0.2s ease-in-out;
-  margin: auto;
 }
 
 .MainWeatherInfo #button-current-city:hover,
