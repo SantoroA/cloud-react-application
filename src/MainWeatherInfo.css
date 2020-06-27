@@ -21,9 +21,7 @@
 .MainWeatherInfo .description {
   text-transform: capitalize;
 }
-.MainWeatherInfo .weather-app-icon {
-  width: 100%;
-}
+
 .MainWeatherInfo .secondary-info,
 .MainWeatherInfo .default-cities {
   font-size: 0.9em;
@@ -52,16 +50,20 @@
   border-radius: 50%;
   background-color: #584153;
   border: none;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   color: #f4f4f4;
   font-size: 1.2em;
   transition: all 0.2s ease-in-out;
+  margin: auto;
 }
 
 .MainWeatherInfo #button-current-city:hover,
 .MainWeatherInfo #button-search-city:hover {
   background-color: #96648f;
+}
+.MainWeatherInfo .fas {
+  font-size: 1rem;
 }
 
 .MainWeatherInfo .activeLink {

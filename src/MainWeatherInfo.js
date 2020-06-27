@@ -54,7 +54,7 @@ export default function MainWeatherInfo(props) {
       <div className="searchForm row align-items-center justify-content-center mt-4">
         <div className="col-2">
           <button
-            className="btn btn-dark m-auto shadow-sm"
+            className="btn btn-dark m-auto align-items shadow-sm"
             id="button-current-city"
             onClick={props.getPosition}
           >
@@ -91,7 +91,7 @@ export default function MainWeatherInfo(props) {
           <div>
             <h1>{`${weather.name}, ${weather.sys.country}`}</h1>
             <div className="row my-4 justify-content-center align-items-center">
-              <div className="col-6 pr-0">
+              <div className="col pr-0">
                 <ReactAnimatedWeather
                   icon={WeatherCodes[weather.weather[0].icon]}
                   color={"#584153"}
@@ -99,14 +99,14 @@ export default function MainWeatherInfo(props) {
                   animate={true}
                 />
               </div>
-              <div className="col-6">
+              <div className="col">
                 <div className="row">
                   <div className="col align-items-right pr-0" id="temp-element">
                     {props.isFahrenheit
                       ? `${Math.round((weather.main.temp * 9) / 5 + 32)}`
                       : `${Math.round(weather.main.temp)}`}
                   </div>
-                  <div className="col align-items-left pl-0">
+                  <div className="col text-left pl-0">
                     <a
                       href="/"
                       className={
